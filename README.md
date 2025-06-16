@@ -1,2 +1,2 @@
-# Trigger
-1) ABC123
+# Trigger Trivy
+1) Scan
