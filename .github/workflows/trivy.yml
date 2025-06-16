@@ -1,0 +1,11 @@
+---
+name: Trivy
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+jobs:
+  trivy-scans:
+    if: (github.base_ref == 'develop' || github.base_ref == 'main' || github.base_ref == 'master' ) && github.event.pull_request.merged == false
+    uses: bio-boris/.github/.github/workflows/reusable_trivy-scans.yml@add-sbom
+    secrets: inherit
