@@ -1,9 +1,16 @@
----
 name: Trivy
 on:
   pull_request:
   push:
   workflow_dispatch:
+
+# --- Add this permissions block ---
+permissions:
+  contents: read # Allows the workflow to read repository content (e.g., checkout code)
+  actions: read # Allows interaction with other actions, including reusable workflows
+  security-events: write # Essential for Trivy to upload security scan results to GitHub Security tab
+# ---------------------------------
+
 jobs:
   trivy-scans:
     if: (github.base_ref == 'develop' || github.base_ref == 'main' || github.base_ref == 'master' ) && github.event.pull_request.merged == false
